@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ry1yvyr01j7r"]
+
+[ext_resource type="Script" uid="uid://buwnbvtk52ehk" path="res://Scenes/camera_position.gd" id="1_a02cp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a02cp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a02cp"]
+albedo_color = Color(0.22745098, 0.62352943, 0.18039216, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0.108011246, 1.3934164, -1.1242037)
+mesh = SubResource("PlaneMesh_a02cp")
+surface_material_override/0 = SubResource("StandardMaterial3D_a02cp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8660254, 0.3535534, 0.3535534, 0, 0.7071068, -0.7071068, -0.5, 0.61237246, 0.61237246, -0.6032319, 0, 0.88351536)
+
+[node name="CameraPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019275784, 0, -0.2135799)
+script = ExtResource("1_a02cp")
+
+[node name="CameraRotationX" type="Node3D" parent="CameraPosition"]
+
+[node name="CameraZoomPivot" type="Node3D" parent="CameraPosition/CameraRotationX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.010799766, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPosition/CameraRotationX/CameraZoomPivot"]
+transform = Transform3D(0.32320735, 0, 0.94632816, 0, 1, 0, -0.94632816, 0, 0.32320735, 0, 0, -0.7973368)
